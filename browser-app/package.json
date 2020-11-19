@@ -25,6 +25,11 @@
     "watch": "theia build --watch --mode development"
   },
   "theia": {
-    "target": "browser"
+    "target": "browser",
+    "generator": {
+          "config": {
+              "preloadTemplate": "./preload.html"
+          }
+      }
   }
 }
