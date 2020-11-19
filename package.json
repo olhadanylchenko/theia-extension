@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "prepare": "lerna run prepare",
-    "rebuild:browser": "theia rebuild:browser"
+    "rebuild:browser": "theia rebuild:browser",
+    "start": "cd youtube-extension && yarn build && cd ../ && yarn rebuild:browser && cd browser-app && yarn prepare && yarn start"
   },
   "devDependencies": {
     "lerna": "2.4.0"
