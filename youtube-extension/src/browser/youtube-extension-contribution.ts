@@ -1,25 +1,31 @@
-import { injectable, inject } from "inversify";
-import { CommandContribution, CommandRegistry, MenuContribution, MenuModelRegistry, MessageService } from "@theia/core/lib/common";
-// import { DialogOverlayService } from "@theia/core/src/browser";
+import { injectable} from "inversify";
+import { Command,  CommandRegistry, MenuContribution, MenuModelRegistry } from "@theia/core/lib/common";
 import { EDITOR_CONTEXT_MENU } from '@theia/editor/lib/browser';
+import { AbstractViewContribution } from '@theia/core/lib/browser';
 
-export const YoutubeExtensionCommand = {
-    id: 'YoutubeExtension.command',
+import { YoutubeExtensionWidget } from './youtube-extension-widget';
+
+
+export const YoutubeExtensionCommand: Command = {
+    id: 'youtube-widget-extension:command', 
     label: "Watch Youtube video"
 };
 
 @injectable()
-export class YoutubeExtensionCommandContribution implements CommandContribution {
+export class YoutubeExtensionWidgetContribution extends AbstractViewContribution<YoutubeExtensionWidget> {
 
-    constructor(
-        @inject(MessageService) private readonly messageService: MessageService,
-        // @inject(DialogOverlayService) private readonly dialogOverlayService: DialogOverlayService,
-    ) { }
+    constructor() {
+        super({
+            widgetId: YoutubeExtensionWidget.ID,
+            widgetName: YoutubeExtensionWidget.LABEL,
+            defaultWidgetOptions: { area: 'right' },
+            toggleCommandId: YoutubeExtensionCommand.id
+        });
+    }
 
     registerCommands(registry: CommandRegistry): void {
         registry.registerCommand(YoutubeExtensionCommand, {
-            // execute: () => this.dialogOverlayService.initialize()
-            execute: () => this.messageService.info('WOOHOOO');
+            execute: () => super.openView({ activate: false, reveal: true }) 
         });
     }
 }
