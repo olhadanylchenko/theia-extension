@@ -19,7 +19,7 @@ export class YoutubeExtensionWidget extends ReactWidget {
         this.title.label = YoutubeExtensionWidget.LABEL;
         this.title.caption = YoutubeExtensionWidget.LABEL;
         this.title.closable = true;
-        this.title.iconClass = 'fa fa-window-maximize'; // example widget icon.
+        this.title.iconClass = 'fa fa-youtube-play';
         this.update();
     }
 
