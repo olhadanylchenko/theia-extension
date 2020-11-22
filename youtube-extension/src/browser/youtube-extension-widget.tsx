@@ -8,7 +8,7 @@ import { MessageService } from '@theia/core';
 export class YoutubeExtensionWidget extends ReactWidget {
 
     static readonly ID = 'widget-extension:widget';
-    static readonly LABEL = 'WidgetExtension Widget';
+    static readonly LABEL = 'Youtube Video';
 
     @inject(MessageService)
     protected readonly messageService!: MessageService;
